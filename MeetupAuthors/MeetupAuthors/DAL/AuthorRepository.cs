@@ -9,6 +9,7 @@ namespace MeetupAuthors.DAL
     public class AuthorRepository
     {
         private static List<Author> _authors;
+        private static List<Book> _books;
 
         public AuthorRepository()
         {
@@ -20,6 +21,17 @@ namespace MeetupAuthors.DAL
                         LastName = "Smith",
                         Id = 1,
                         BirthDate = new DateTimeOffset(1980,1,1,0,0,0,new TimeSpan())
+                    }
+                };
+                _books = new List<Book>()
+                {
+                    new Book()
+                    {
+                        Id = 1,
+                        AuthorId = 1,
+                        Title = "Ice and Fire",
+                        Description = "Lots of people dying"
+                    
                     }
                 };
             }
@@ -47,6 +59,37 @@ namespace MeetupAuthors.DAL
             author.Id = nextId;
 
             _authors.Add(author);
+        }
+
+        public void UpdateAuthor(Author author)
+        {
+            int index = _authors.FindIndex(a => a.Id == author.Id);
+            if (index >= 0)
+                _authors[index] = author;
+        }
+
+        public void DeleteAuthor(int id)
+        {
+            int index = _authors.FindIndex(a => a.Id == id);
+            if (index >= 0)
+                _authors.RemoveAt(index);
+        }
+
+        public List<Book> GetAllBooksByAuthor(int authorId)
+        {
+            return _books.Where(b => b.AuthorId == authorId).ToList();
+        }
+
+        public void AddBook(int authorId, Book book)
+        {
+            int nextId = 0;
+            if (_books.Any())
+            {
+                nextId = _books.Max(a => a.Id);
+            }
+            nextId++;
+            book.Id = nextId;
+            _books.Add(book);
         }
     }
 }

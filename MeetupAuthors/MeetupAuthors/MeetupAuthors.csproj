@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
+    <Compile Include="Models\BookCreateDto.cs" />
     <Compile Include="DAL\AuthorRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -93,6 +94,9 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\AuthorCreateDto.cs" />
     <Compile Include="Models\AuthorDto.cs" />
+    <Compile Include="Models\AuthorUpdateDto.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BookDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
